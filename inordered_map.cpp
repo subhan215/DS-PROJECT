@@ -15,11 +15,13 @@ class node
 public:
     IntersectionPoint data;
     node *next;
+    int distance ; 
     node() {}
-    node(IntersectionPoint dta)
+    node(IntersectionPoint dta , int d)
     {
         data = dta;
         next = NULL;
+        distance = d ; 
     }
 };
 
@@ -32,16 +34,10 @@ public:
     {
         head = NULL;
     }
-    SinglyLinkedList(IntersectionPoint data)
-    {
-        node *n = new node(data);
-        head = n;
-        tail = n;
-    }
 
-    void insert(IntersectionPoint data)
+    void insert(IntersectionPoint data , int d)
     {
-        node *n = new node(data);
+        node *n = new node(data , d);
         if (head == NULL)
         {
             head = n;
@@ -121,7 +117,7 @@ public:
         currentIndex = -1; 
     }
     // as we are dealing with undirected graphs so when an edge is added it will be inserted in the corresponding list of both verices
-    void add_edge(IntersectionPoint vertex_1, IntersectionPoint vertex_2)
+    void add_edge(IntersectionPoint vertex_1, IntersectionPoint vertex_2 , int distance)
     {
         int index = -1 ; 
         for(int i = 0 ; i <= currentIndex ; i++) {
@@ -130,11 +126,11 @@ public:
 			}
 		}
 		if(index!=-1) {
-			vertex[index].insert(vertex_2) ; 
+			vertex[index].insert(vertex_2 , distance) ; 
 		}
 		else {
 			currentIndex++ ; 
-			vertex[currentIndex].insert(vertex_2) ; 
+			vertex[currentIndex].insert(vertex_2 , distance) ; 
 			points[currentIndex] = vertex_1 ; 
 		}
 		
@@ -145,11 +141,11 @@ public:
 			}
 		}
 		if(index!=-1) {
-			vertex[index].insert(vertex_1) ; 
+			vertex[index].insert(vertex_1 , distance) ; 
 		}
 		else {
 			currentIndex++ ; 
-			vertex[currentIndex].insert(vertex_1) ; 
+			vertex[currentIndex].insert(vertex_1 , distance) ; 
 			points[currentIndex] = vertex_2 ; 
 		}
 		
@@ -168,18 +164,11 @@ public:
 
 int main()
 {
-    SinglyLinkedList liist;
-    liist.insert(IntersectionPoint("1"));
-    liist.insert(IntersectionPoint("3"));
-    liist.insert(IntersectionPoint("2"));
-    liist.display_list();
-    liist.delete_node(IntersectionPoint("3"));
-    liist.display_list();
     custom_unordered_map mapp(5);
-    mapp.add_edge(IntersectionPoint("1"), IntersectionPoint("2"));
-    mapp.add_edge(IntersectionPoint("1"), IntersectionPoint("3"));
-    mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("4"));
-    mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("5"));
-    mapp.add_edge(IntersectionPoint("2"), IntersectionPoint("3"));
+    mapp.add_edge(IntersectionPoint("12"), IntersectionPoint("2") , 4);
+    mapp.add_edge(IntersectionPoint("1"), IntersectionPoint("3") , 6);
+    mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("4") , 7);
+    mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("5") , 9);
+    mapp.add_edge(IntersectionPoint("2"), IntersectionPoint("3") , 10);
     mapp.view_edge_list();
 }
