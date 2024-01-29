@@ -164,9 +164,11 @@ public:
 
 int main()
 {
+	
+	
     custom_unordered_map mapp(5);
-    mapp.add_edge(IntersectionPoint("12"), IntersectionPoint("2") , 4);
-    mapp.add_edge(IntersectionPoint("1"), IntersectionPoint("3") , 6);
+    mapp.add_edge(IntersectionPoint("Power House"), IntersectionPoint("Liaquatabad-10") , 4);
+    mapp.add_edge(IntersectionPoint("Liaquatabad-10"), IntersectionPoint("Maritime Museum") , 6);
     mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("4") , 7);
     mapp.add_edge(IntersectionPoint("3"), IntersectionPoint("5") , 9);
     mapp.add_edge(IntersectionPoint("2"), IntersectionPoint("3") , 10);
